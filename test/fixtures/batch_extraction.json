@@ -1,0 +1,216 @@
+{
+  "next_batch_params": [
+    "resumptionToken%3D%3A%3A%3Aoai_dc%3A1000"
+  ],
+  "original_params": {
+    "endpoint": "http://localhost:3002/oai/show",
+    "endpoint_type": "oai_dc",
+    "api_key": "aff3aeac5688976f3762622920de4d80",
+    "query_params": "&verb=ListRecords",
+    "format": "json",
+    "action": "extract",
+    "controller": "api/v1/extractors"
+  },
+  "records": [
+    {
+      "header": {
+        "identifier": "oai:reflections.mndigital.org:swede/3",
+        "datestamp": "2013-10-17",
+        "setSpec": "swede"
+      },
+      "metadata": {
+        "dc": {
+          "xmlns:oai_dc": "http://www.openarchives.org/OAI/2.0/oai_dc/",
+          "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+          "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "xsi:schemaLocation": "http://www.openarchives.org/OAI/2.0/oai_dc/\n           http://www.openarchives.org/OAI/2.0/oai_dc.xsd",
+          "title": "Turnblad family, Minneapolis, Minnesota",
+          "creator": "Brush, James A.",
+          "contributor": "Brush Studios (Minneapolis, Minnesota)",
+          "description": "Studio portrait of publisher Swan J. Turnblad, wife Christina Nelson Turnbald and their daughter Lillian, circa 1890.",
+          "date": "1890?",
+          "relation": "People of Minnesota;",
+          "type": "Still Image",
+          "format": "Cabinet photographs",
+          "subject": [
+            "Men; Women; Children; Clothing and dress; Children's clothing",
+            "Turnblad, Swan, J., 1860-1933; Publishers; Families; Swedish Americans; Immigrants"
+          ],
+          "coverage": [
+            "Minneapolis",
+            "Hennepin",
+            "Minnesota",
+            "United States"
+          ],
+          "publisher": "American Swedish Institute, 2600 Park Avenue South, Minneapolis, MN 55407; http://ASImn.org",
+          "rights": "This image may not be reproduced for any reason without written permission from the American Swedish Institute",
+          "identifier": [
+            "TURFAM1890",
+            "mhs03124",
+            "http://reflections.mndigital.org/u?/swede,3"
+          ]
+        }
+      }
+    },
+    {
+      "header": {
+        "identifier": "oai:reflections.mndigital.org:swede/4",
+        "datestamp": "2013-10-17",
+        "setSpec": "swede"
+      },
+      "metadata": {
+        "dc": {
+          "xmlns:oai_dc": "http://www.openarchives.org/OAI/2.0/oai_dc/",
+          "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+          "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "xsi:schemaLocation": "http://www.openarchives.org/OAI/2.0/oai_dc/\n           http://www.openarchives.org/OAI/2.0/oai_dc.xsd",
+          "title": "Svenska Amerikanska Posten, full page advertisement, Minneapolis, Minnesota",
+          "description": "The 1903 convention of the American Union of Swedish Singers was commemorated with a color page in Svenska Amerikanska Posten.",
+          "date": "1903",
+          "relation": "Immigration and Ethnicity;",
+          "type": "Text",
+          "format": "Advertisements",
+          "subject": [
+            "Singers; Singing; Musicians; Newspapers; Music festivals",
+            "American Union of Swedish Singers"
+          ],
+          "coverage": [
+            "Minneapolis",
+            "Downtown",
+            "Hennepin",
+            "Minnesota",
+            "United States"
+          ],
+          "language": "Swedish;",
+          "publisher": "American Swedish Institute, 2600 Park Avenue South, Minneapolis, MN 55407; http://ASImn.org",
+          "rights": "This image may not be reproduced for any reason without written permission from the American Swedish Institute",
+          "identifier": [
+            "SAPCOLOR1903",
+            "mhs03125",
+            "http://reflections.mndigital.org/u?/swede,4"
+          ]
+        }
+      }
+    },
+    {
+      "header": {
+        "identifier": "oai:reflections.mndigital.org:swede/5",
+        "datestamp": "2013-10-17",
+        "setSpec": "swede"
+      },
+      "metadata": {
+        "dc": {
+          "xmlns:oai_dc": "http://www.openarchives.org/OAI/2.0/oai_dc/",
+          "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+          "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "xsi:schemaLocation": "http://www.openarchives.org/OAI/2.0/oai_dc/\n           http://www.openarchives.org/OAI/2.0/oai_dc.xsd",
+          "title": "Svenska Amerikanska Posten offices, Minneapolis, Minnesota",
+          "description": "A February 1899 fire destroyed a building near the offices of Svenska Amerikanska Posten, visible in the photograph.",
+          "date": "1899-02",
+          "relation": "Immigration and Ethnicity;",
+          "type": "Still Image",
+          "format": "Black-and-white photographs",
+          "subject": [
+            "Fires; Newspapers; Winter; Snow",
+            "Svenska Amerikanska Posten; Fires; Newspapers"
+          ],
+          "coverage": [
+            "Minneapolis",
+            "Downtown",
+            "Hennepin",
+            "Minnesota",
+            "United States"
+          ],
+          "publisher": "American Swedish Institute, 2600 Park Avenue South, Minneapolis, MN 55407; http://ASImn.org",
+          "rights": "This image may not be reproduced for any reason without written permission from the American Swedish Institute",
+          "identifier": [
+            "SAPFIRE1899",
+            "mhs03126",
+            "http://reflections.mndigital.org/u?/swede,5"
+          ]
+        }
+      }
+    },
+    {
+      "header": {
+        "identifier": "oai:reflections.mndigital.org:swede/6",
+        "datestamp": "2013-10-17",
+        "setSpec": "swede"
+      },
+      "metadata": {
+        "dc": {
+          "xmlns:oai_dc": "http://www.openarchives.org/OAI/2.0/oai_dc/",
+          "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+          "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "xsi:schemaLocation": "http://www.openarchives.org/OAI/2.0/oai_dc/\n           http://www.openarchives.org/OAI/2.0/oai_dc.xsd",
+          "title": "Swedlanda Lutheran Church 60th Anniversary, Hector Township, Minnesota",
+          "creator": "Mehl, George O.",
+          "contributor": "George O. Mehl Studio (Minneapolis, Minnesota)",
+          "description": "Church members pose in front of the church for the 60th Anniversary on June 24-26, 1934.",
+          "date": "1934-06-24",
+          "relation": "Religion",
+          "type": "Still Image",
+          "format": "Panoramas",
+          "subject": [
+            "Church entertainments",
+            "Church groups"
+          ],
+          "coverage": [
+            "Hector Township",
+            "Renville",
+            "Minnesota",
+            "United States"
+          ],
+          "publisher": "American Swedish Institute, 2600 Park Avenue South, Minneapolis, MN 55407; http://ASImn.org",
+          "rights": "This image may not be reproduced without the written permission of the American Swedish Institute",
+          "identifier": [
+            "swelch",
+            "umn17028",
+            "http://reflections.mndigital.org/u?/swede,6"
+          ]
+        }
+      }
+    },
+    {
+      "header": {
+        "identifier": "oai:reflections.mndigital.org:swede/8",
+        "datestamp": "2013-10-17",
+        "setSpec": "swede"
+      },
+      "metadata": {
+        "dc": {
+          "xmlns:oai_dc": "http://www.openarchives.org/OAI/2.0/oai_dc/",
+          "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+          "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "xsi:schemaLocation": "http://www.openarchives.org/OAI/2.0/oai_dc/\n           http://www.openarchives.org/OAI/2.0/oai_dc.xsd",
+          "title": "Minnesota State Fair Dairy Building, St. Paul, Minnesota",
+          "description": "Color postcard of the Minnesota State Fair's Dairy Building with flags flying. The message on the reverse is in Swedish and is postmarked \"Jan 21 1911.\"",
+          "date": "1911",
+          "source": "A.C. Bosselman & Company",
+          "relation": "Agriculture",
+          "type": "Still Image",
+          "format": "Postcards",
+          "subject": [
+            "Agricultural exhibitions",
+            "Minnesota State Fair"
+          ],
+          "coverage": [
+            "St. Paul",
+            "Ramsey",
+            "Minnesota",
+            "United States"
+          ],
+          "publisher": "American Swedish Institute, 2600 Park Avenue South, Minneapolis, MN 55407; http://ASImn.org",
+          "rights": "This image may not be reproduced without the written permission of the American Swedish Institute",
+          "identifier": [
+            "msfdai",
+            "umn16594a",
+            "http://reflections.mndigital.org/u?/swede,8"
+          ]
+        }
+      }
+    }
+  ],
+  "http_status_code": "200",
+  "errors": null
+}

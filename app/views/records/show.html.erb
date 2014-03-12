@@ -1,0 +1,69 @@
+<% if !@not_found %>
+  <div class="transform-preview">
+    <h1>Transformation Path Diff</h1>
+      <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-2">
+              <h2>Field Path</h2>
+            </div>
+            <div class="col-md-5 local">
+              <h2>Local Value</h2>
+            </div>
+            <div class="col-md-5 dpla">
+              <h2>DPLA Value</h2>
+            </div>
+          </div>
+
+          <% @field_diffs.each do |path, vals| %>
+
+            <div class="row">
+              <div class="col-md-2">
+               <%= path %>
+              </div>
+              <div class="col-md-5">
+                <pre><code><%= vals[0] %></code></pre>
+              </div>
+              <div class="col-md-5">
+                <pre><code><%= vals[1] %></code></pre>
+              </div>
+            </div>
+          <% end %>
+      </div>
+      <div class="row">
+        <div class="col-md-12 dpla revisions">
+          <h2>Revision History</h2>
+          <ul class="list-group">
+          <% @revision_history.each do |hist| %>
+          <li class="list-group-item <%= hist[3] %>">
+            <% live = live_revision(hist[0], hist[1], @live_revision) %>
+            <p><%= "Batch ##{hist[1]}" %></p>
+            <p><%= "Updated: #{hist[2]}" %></p>
+            <% if !hist[3] %>
+            <%= button_to "View", {
+              :controller => :records,
+              :action => 'show',
+              :version_id => hist[0]},
+              :form_class => 'inline',
+              :method => :get,
+              :class => 'btn btn-mini btn-info' %>
+            <% end %>
+            </li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Local Record</h2>
+            <pre><code><%= @ours %></code></pre>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h2>DPLA Record</h2>
+            <pre><code><%= @theirs %></code></pre>
+          </div>
+        </div>
+    </div>
+  </div>
+<% end %>

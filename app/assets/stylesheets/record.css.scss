@@ -1,0 +1,12 @@
+// Place all the styles related to the Record controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.revisions li {
+  margin-bottom: 10px;
+  padding-bottom: 15px;
+}
+
+.revisions li.active {
+  background-color: #D1D1D1;
+}

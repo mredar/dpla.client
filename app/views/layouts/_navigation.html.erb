@@ -1,0 +1,29 @@
+<header class="navbar navbar-inverse">
+  <div class="navbar-inner">
+       <div class="col-md-1"></div>
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav">
+        <li <%= is_active?(import_jobs_path)%>><%= link_to "Import Jobs", import_jobs_path %></li>
+
+        <li <%= is_active?(sidekiq_web_path)%>>
+          <%= link_to "Batch Workers Admin", sidekiq_web_path, class: 'batch-workers-admin' %>
+          <span class="glyphicon glyphicon-new-window"></span>
+        </li>
+        </ul>
+        <% end %>
+      <nav>
+        <ul class="nav pull-right user">
+          <% if user_signed_in? %>
+            Logged in as <strong><%= current_user.email %></strong>
+            <span class="glyphicon glyphicon-user"></span>
+            <%= link_to 'Edit Profile', edit_user_registration_path %> |
+            <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            <span class="glyphicon glyphicon-log-out"></span>
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path %> |
+            <%= link_to "Login", new_user_session_path %>
+          <% end %>
+        </ul>
+      </nav>
+  </div>
+</header>

@@ -1,0 +1,143 @@
+<p>
+  <strong>Name:</strong>
+  <%= @import_job.name %>
+</p>
+
+<p>
+  <strong>Canceled:</strong>
+  <%= @import_job.canceled %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @import_job.notes %>
+</p>
+
+<p>
+  <strong>Is Active?:</strong>
+  <%= (@is_active) ? 'Active' : 'Inactive' %>
+</p>
+
+<%= link_to 'Edit Import Job', edit_import_job_path(@import_job), :class => 'btn btn-mini btn-info' %>
+<%= link_to 'View Import Jobs', import_jobs_path, :class => 'btn btn-mini btn-info' %>
+
+<%= button_to "Share Job", {
+    :controller => :import_jobs,
+    :action => 'share_job',
+    :id => @import_job.id
+  },
+  :form_class => 'inline',
+  :class => 'btn btn-mini btn-danger' %>
+
+<%= button_to "Run ETL", {
+  :controller => :import_jobs,
+  :action => 'run_workers',
+  :id => @import_job.id,
+  :import_job => {
+      :perform_async => true,
+      :transform_load => true
+    },
+  },
+  :form_class => 'inline',
+  :class => 'btn btn-mini btn-danger' %>
+
+<%= button_to "Run ETL - First Batch Only", {
+  :controller => :import_jobs,
+  :action => 'run_worker',
+  :id => @import_job.id,
+  :import_job => {
+      :perform_async => true,
+      :transform_load => true
+    },
+  },
+  :form_class => 'inline',
+  :class => 'btn btn-mini btn-danger' %>
+
+<%= button_to "Delete All Batches", {
+    :controller => :import_jobs,
+    :action => 'destroy_batches',
+    :id => @import_job.id
+  },
+  :form_class => 'inline',
+  :class => 'btn btn-mini btn-danger' %>
+
+
+<% if !@import_batches.nil? %>
+  <% if @import_batches.count > 0 %>
+    <fieldset class="batches">
+      <legend>Individual Batch Operations</legend>
+      <% @import_batches.each do |import_batch| %>
+          <div class="batch-row">
+            <div class="field">
+              <%= label_tag 'batch_import_id', "Batch ID: #{import_batch.id}" %>
+              <% loaded = (import_batch.is_active) ? "Active" : "Inactive" %>
+            </div>
+            <div class="field">
+              <%= label_tag 'batch_param', "Transformed and Loaded: #{loaded} " %>
+              <% batch_param = (import_batch.batch_param) ? CGI::unescape(import_batch.batch_param) : 'none' %>
+            </div>
+            <div class="field">
+              <%= label_tag 'batch_param', "Batch Parameters: #{batch_param}" %>
+            </div>
+            <p>
+            <%= button_to "Re-extract", {
+              :controller => :import_batches,
+              :action => 'extract',
+              :id => import_batch.id,
+              :import_batch => {
+                :import_job_id => @import_job.id,
+                :perform_async => true
+                }
+              },
+              :form_class => 'inline',
+              :class => 'btn btn-mini btn-warning' %>
+
+            <%= button_to "Re-transform", {
+              :controller => :import_batches,
+              :action => 'transform',
+              :id => import_batch.id,
+              :import_batch => {
+                :import_job_id => @import_job.id,
+                :perform_async => true
+                }
+              },
+              :form_class => 'inline',
+              :class => 'btn btn-mini btn-warning' %>
+
+            <%= button_to "View JSON", {
+                :controller => :transformation_batches,
+                :action => 'import_batch_records',
+                :import_batch_id => import_batch.id
+              },
+              :form_class => 'inline',
+              :method => :get,
+              :class => 'btn btn-mini btn-info' %>
+
+            <%= button_to "Download JSON", {
+              :controller => :import_batches,
+              :action => 'download_transformations',
+              :id => import_batch.id,
+              :import_batch => {
+                :import_job_id => @import_job.id
+                }
+              },
+              :form_class => 'inline',
+              :class => 'btn btn-mini btn-info' %>
+
+            <%= button_to("Delete Bach AND RECORDS", {
+              :controller => :import_batches,
+              :action => 'destroy',
+              :id => import_batch.id,
+              :job_id => @import_job.id,
+            },{
+              :method => :delete,
+              :form_class => 'inline',
+              :class => 'btn btn-mini btn-danger',
+              data: { confirm: "Whoa there. Are you SURE?" }
+            }) %>
+            </p>
+          </div>
+    </fieldset>
+    <% end %>
+  <% end %>
+<% end %>

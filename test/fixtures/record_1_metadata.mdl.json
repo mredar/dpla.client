@@ -1,0 +1,140 @@
+{
+  "@context": {
+    "edm": "http://www.europeana.eu/schemas/edm/",
+    "isShownAt": "edm:isShownAt",
+    "dpla": "http://dp.la/terms/",
+    "dataProvider": "edm:dataProvider",
+    "aggregatedDigitalResource": "dpla:aggregatedDigitalResource",
+    "state": "dpla:state",
+    "hasView": "edm:hasView",
+    "provider": "edm:provider",
+    "collection": "dpla:aggregation",
+    "object": "edm:object",
+    "stateLocatedIn": "dpla:stateLocatedIn",
+    "begin": {
+      "@type": "xsd:date",
+      "@id": "dpla:dateRangeStart"
+    },
+    "@vocab": "http://purl.org/dc/terms/",
+    "LCSH": "http://id.loc.gov/authorities/subjects",
+    "sourceResource": "edm:sourceResource",
+    "name": "xsd:string",
+    "coordinates": "dpla:coordinates",
+    "end": {
+      "@type": "xsd:date",
+      "@id": "dpla:dateRangeEnd"
+    },
+    "originalRecord": "dpla:originalRecord"
+  },
+  "testMultiOrigin": [
+    "Still Image",
+    [
+      "Minneapolis",
+      "Hennepin",
+      "Minnesota",
+      "United States"
+    ]
+  ],
+  "object": "http://reflections.mndigital.org/cgi-bin/thumbnail.exe?CISOROOT=/swede&CISOPTR=3",
+  "dataProvider": "American Swedish Institute, 2600 Park Avenue South, Minneapolis, MN 55407; http://ASImn.org",
+  "provider": {
+    "@id": "http://dp.la/api/contributor/mdl",
+    "name": "Minnesota Digital Library"
+  },
+  "title": "Turnblad family, Minneapolis, Minnesota",
+  "sourceResource": {
+    "title": "Turnblad family, Minneapolis, Minnesota",
+    "spatial": {
+      "county": "Hennepin County",
+      "name": "Minneapolis Downtown Hennepin Minnesota United States",
+      "state": "Minnesota",
+      "coordinates": [
+        "44.9871",
+        "-93.2737"
+      ],
+      "country": "United States"
+    },
+    "description": "Studio portrait of publisher Swan J. Turnblad, wife Christina Nelson Turnbald and their daughter Lillian, circa 1890.",
+    "contributor": "Brush Studios (Minneapolis, Minnesota)",
+    "format": "Cabinet photographs",
+    "rights": "This image may not be reproduced for any reason without written permission from the American Swedish Institute",
+    "relation": [
+      "People of Minnesota"
+    ],
+    "collection": {
+      "title": "American Swedish Institute (Digital collection)",
+      "description": "The American Swedish Institute, a historic museum dedicated to the celebration of Swedish culture, is home to collections on the history of Swedish immigration to the United States, particularly immigration to Minnesota, Swedish-American life and culture and the history and culture of Sweden as it has influenced Swedish America. The American Swedish Institute contributed to Minnesota Reflections images from, Svenska Amerikanska Posten, a Swedish-American newspaper, taken between 1898 and 1903."
+    },
+    "type": "Still Image"
+  },
+  "identifier": "oai:reflections.mndigital.org:swede/3",
+  "originalRecord": {
+    "header": {
+      "identifier": "oai:reflections.mndigital.org:swede/3",
+      "datestamp": "2013-10-17",
+      "setSpec": "swede"
+    },
+    "metadata": {
+      "dc": {
+        "xmlns:oai_dc": "http://www.openarchives.org/OAI/2.0/oai_dc/",
+        "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+        "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+        "xsi:schemaLocation": "http://www.openarchives.org/OAI/2.0/oai_dc/\n           http://www.openarchives.org/OAI/2.0/oai_dc.xsd",
+        "title": "Turnblad family, Minneapolis, Minnesota",
+        "creator": "Brush, James A.",
+        "contributor": "Brush Studios (Minneapolis, Minnesota)",
+        "description": "Studio portrait of publisher Swan J. Turnblad, wife Christina Nelson Turnbald and their daughter Lillian, circa 1890.",
+        "date": "1890?",
+        "relation": "People of Minnesota;",
+        "type": "Still Image",
+        "format": "Cabinet photographs",
+        "subject": [
+          "Men; Women; Children; Clothing and dress; Children's clothing",
+          "Turnblad, Swan, J., 1860-1933; Publishers; Families; Swedish Americans; Immigrants"
+        ],
+        "coverage": [
+          "Minneapolis",
+          "Hennepin",
+          "Minnesota",
+          "United States"
+        ],
+        "publisher": "American Swedish Institute, 2600 Park Avenue South, Minneapolis, MN 55407; http://ASImn.org",
+        "rights": "This image may not be reproduced for any reason without written permission from the American Swedish Institute",
+        "identifier": [
+          "TURFAM1890",
+          "mhs03124",
+          "http://reflections.mndigital.org/u?/swede,3"
+        ]
+      }
+    },
+    "setSpec": {
+      "setSpec": "swede",
+      "setName": "American Swedish Institute",
+      "setDescription": {
+        "oclcdc": {
+          "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+          "xmlns:oclcterms": "http://purl.org/oclc/terms/",
+          "xmlns:dcterms": "http://purl.org/dc/terms/",
+          "xmlns:dcmitype": "http://purl.org/dc/dcmitype/",
+          "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "xsi:schemaLocation": "http://purl.org/oclc/terms/\n           http://svn.dev.oclc.org/svn/Crosswalk_PG/trunk/schemas/oclcterms/oclcterms.xsd",
+          "recordSetIdentifier": "swede",
+          "recordTransportIdentifier": "oai:reflections.mndigital.org:swede",
+          "recordContentSource": [
+            "MNU",
+            "CNTNT"
+          ],
+          "recordIdentifier": {
+            "xsi:type": "http://purl.org/oclc/terms/oclcrecordnumber"
+          },
+          "title": "American Swedish Institute (Digital collection)",
+          "subject": "Hennepin County; Minnesota; United States",
+          "description": "The American Swedish Institute, a historic museum dedicated to the celebration of Swedish culture, is home to collections on the history of Swedish immigration to the United States, particularly immigration to Minnesota, Swedish-American life and culture and the history and culture of Sweden as it has influenced Swedish America. The American Swedish Institute contributed to Minnesota Reflections images from, Svenska Amerikanska Posten, a Swedish-American newspaper, taken between 1898 and 1903.",
+          "creator": "American Swedish Institute",
+          "date": "1885 - 1938",
+          "rights": "These images may not be reproduced without the written permission of the American Swedish Institute."
+        }
+      }
+    }
+  }
+}

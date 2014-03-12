@@ -1,0 +1,6 @@
+.revisions li {
+  margin-bottom: 10px;
+  padding-bottom: 15px; }
+
+.revisions li.active {
+  background-color: #D1D1D1; }

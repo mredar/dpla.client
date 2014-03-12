@@ -1,0 +1,17 @@
+
+
+<div class="records">
+
+<div clas="row">
+  <div class="col-md-6">
+    <%= will_paginate @records %>
+    <ul>
+      <% @records.each do |record| %>
+        <li><%= link_to 'Edit', edit_record_path(record), :class => 'btn btn-mini btn-info' %><%= record.identifier %></li>
+      <% end %>
+    </ul>
+    <%= will_paginate @records %>
+  </div>
+</div>
+
+

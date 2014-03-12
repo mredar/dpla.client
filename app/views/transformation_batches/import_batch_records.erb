@@ -1,0 +1,22 @@
+<%= link_to 'Back to Import Job', import_job_path(@import_job), :class => 'btn btn-mini btn-info' %></td>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Local Record JSON</h1>
+  </div>
+</div>
+<div class="batch-records">
+  <ul>
+  <% @records.each do |record| %>
+      <div class="row">
+        <li>
+          <div class="col-md-12">
+           [ID: <%= record.id %>]
+            <%= record.identifier %>
+            <%= link_to 'View Record', record, :class => 'btn btn-mini btn-info' %></td>
+            <pre><code><%= JSON.pretty_generate(record.metadata) %></pre></code>
+          </div>
+        </li>
+      </div>
+  <% end %>
+  </ul>
+</div>

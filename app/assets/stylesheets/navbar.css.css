@@ -1,0 +1,8 @@
+.navbar .user {
+  padding: 10px;
+  font-size: 1.2em;
+  color: #ffffff; }
+
+.navbar .icon-user,
+.navbar .icon-remove-sign {
+  color: #0088cc; }

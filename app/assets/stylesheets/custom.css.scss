@@ -1,0 +1,26 @@
+@import "bootstrap";
+@import "bootstrap/theme";
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/assets/bootstrap/glyphicons-halflings-regular.eot');
+  src: url('/assets/bootstrap/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/bootstrap/glyphicons-halflings-regular.woff') format('woff'), url('/assets/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+.glyphicon.glyphicon-new-window {
+  position: absolute;
+  color: #ccc;
+  font-size: 1.2em;
+  top: 17px;
+  left: 160px
+}
+
+.glyphicon.glyphicon-user{
+  color: #428bca;
+  margin-left: 10px;
+}
+
+.glyphicon.glyphicon-log-out {
+  color: #428bca;
+  margin-right: 15px;
+}

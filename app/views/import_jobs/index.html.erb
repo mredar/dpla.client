@@ -1,0 +1,74 @@
+<h1>Import Jobs</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Job ID</th>
+      <th>Name</th>
+      <th>Notes</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @import_jobs.each do |import_job| %>
+      <tr>
+        <td><%= import_job.id %></td>
+        <td><%= import_job.name %></td>
+        <td><%= import_job.notes %></td>
+        <td>
+            <%= button_to "Run ETL", {
+              :controller => :import_jobs,
+              :action => 'run_workers',
+              :id => import_job.id,
+              :import_job => {
+                  :perform_async => true,
+                  :transform_load => true
+                }
+              },
+              :method => :refetch,
+              :form_class => 'inline',
+              :class => 'btn btn-mini btn-danger' %>
+          </td>
+          <td>
+
+            <%= button_to "Run ETL - First Batch Only", {
+            :controller => :import_jobs,
+            :action => 'run_worker',
+            :id => import_job.id,
+            :import_job => {
+                :perform_async => true,
+                :transform_load => true
+              },
+            },
+            :method => :refetch,
+            :form_class => 'inline',
+            :class => 'btn btn-mini btn-danger' %>
+        </td>
+        <td>
+            <%= button_to "Cancel Import", {
+              :controller => :import_jobs,
+              :action => 'cancel',
+              :id => import_job.id},
+              :method => :refetch,
+              :form_class => 'inline',
+              :class => 'btn btn-mini btn-warning',
+              :disabled => false %>
+        </td>
+        <td><%= link_to 'Batches', import_job, :class => 'btn btn-mini btn-info' %>
+
+        </td>
+        <td><%= link_to 'Edit', edit_import_job_path(import_job), :class => 'btn btn-mini btn-info' %></td>
+        <td><%= link_to 'Delete', import_job, method: :delete, :class => 'btn btn-mini btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Import job', new_import_job_path, :class => 'btn btn-primary' %>
