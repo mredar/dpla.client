@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def authorize_user
     if (!current_user.nil?)
       if current_user.authorization_level != 1
-        render :status => :forbidden, :text => "It is Forbidden!"
+        render :status => :forbidden, :text => "Account awaiting authorization"
       end
     end
   end
