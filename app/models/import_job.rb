@@ -37,6 +37,7 @@ class ImportJob < ActiveRecord::Base
       batch.save
     end
     self.enrichments = nil
+    self.canceled = false
     self.save!
   end
 
