@@ -47,8 +47,9 @@ class ImportJob < ActiveRecord::Base
       batch.is_active = false
       batch.save
       self.enrichments = nil
-      self.save!
     end
+    self.canceled = false
+    self.save!
   end
 
   # Extract a single batch (pre-existing or new import batch)
