@@ -59,7 +59,7 @@ class Record < ActiveRecord::Base
   def self.get_record_hash(metadata, identifier, provider)
     begin
       # Only track changes to the transformed doc, not changes in the original record
-      self.hashify([metadata.except!('originalRecord').to_json, identifier, provider].inject {|field, n| field + n})
+      self.hashify([metadata.except('originalRecord').to_json, identifier, provider].inject {|field, n| field + n})
       rescue => e
         raise "Could not hashify data for Identifier: `#{identifier}`, Provider: `#{provider}`, Metadata: `#{metadata_string}` Error: #{e}"
       end
