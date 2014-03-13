@@ -97,7 +97,7 @@ class Pipeline
   def construct_url(params)
     # Tack on the next iterrator
     query = "&query_params=#{params['query_params']}"
-    cache_response = (params['cache_response'] == true) ? "&cache_response=true" : nil
+    cache_response = (params['cache_response']) ? "&cache_response=#{params['cache_response']}" : nil
     batch_param = (defined?(params['batch_param']) && !params['batch_param'].nil?) ? "&batch_param=#{params['batch_param']}" : nil
     "#{params['base_url']}?endpoint=#{params['endpoint']}&endpoint_type=#{params['endpoint_type']}&api_key=#{params['api_key']}#{query}#{batch_param}#{cache_response}"
   end
