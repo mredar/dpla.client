@@ -61,6 +61,7 @@ gem 'rest-client'
 gem 'devise'
 gem 'will_paginate', '~> 3.0'
 gem 'diffy'
+gem 'capistrano-sidekiq'
 
 group :test, :development do
   # Debug seems to have trouble w/ Ruby 2.x, byebug is a replacment
