@@ -5,4 +5,4 @@
 development:
   :concurrency: 10
 production:
-  :concurrency: 7
+  :concurrency: 5
