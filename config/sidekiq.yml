@@ -1,4 +1,7 @@
 :timeout: 300
 :pidfile: ./tmp/pids/sidekiq.pid
 :logfile: ./tmp/pids/sidekiq_log.pid
-:concurrency: 8
+development:
+  :concurrency: 10
+production:
+  :concurrency: 7
