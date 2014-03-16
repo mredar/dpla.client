@@ -17,13 +17,17 @@ class CreateRecords < ActiveRecord::Migration
       # revision. This allows us to change revisions by simply setting a flag,
       t.boolean :is_live_revision
       # In the case of manual edits, we do not want a record added via an
-      # automated batch import to declare itself as live. So, if
-      # lock_as_live_revision == true, we always set is_live_revision = false
-      t.boolean :lock_as_live_revision
+      # automated batch import to declare itself as live. This strig represents
+      # the hashed value of the transformed metadata.
+      t.string :lock_at_metadata_hash
+      # A hash of the provider and identifier (in that order), used as the
+      # primary key
+      t.string :record_hash
       t.timestamps
       t.references :transformation_batch, index: true
     end
     add_index :records, :record_hash, unique: true
+    add_index :records, [:provider, :identifier], unique:  true
     add_index :records, :title
     add_index :records, :identifier
     add_index :records, :provider

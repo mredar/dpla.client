@@ -48,7 +48,7 @@ describe ImportBatchesController do
 
   it "should destroy a batch and its related transformations and records" do
     @transformation_batch = @import_batch.transformation_batches.create()
-    @records = @transformation_batch.records.create(identifier: 'foo', provider: 'bar', metadata: '{"foo": "bar"}')
+    @records = @transformation_batch.records.create(identifier: 'foo', provider: 'bar', metadata: {"foo" => "bar"})
     assert_equal 1, Record.all.count
     assert_equal 1, ImportBatch.count
     assert_equal 1, TransformationBatch.count
@@ -76,8 +76,20 @@ describe ImportBatchesController do
     @import_batch.save
     post :transform, import_batch: { perform_async: false}, id: @import_batch.id
     # Run the transformation again to ensure idempotence
-    post :transform, import_batch: { perform_async: false}, id: @import_batch.id
-    assert_equal 7, Record.all.count
+    # post :transform, import_batch: { perform_async: false}, id: @import_batch.id
+
+    # We should still have 5 records
+    assert_equal 5, Record.all.count
+
+    # Make sure the metadata gets revised
+    record_1 = Record.where(identifier: @import_batch.extraction['records'][1]['header']['identifier']).take
+    record_2 = Record.where(identifier: @import_batch.extraction['records'][1]['header']['identifier']).take
+    assert_equal 2,  record_1.metadata['revisions'].count
+    assert_equal 2,  record_2.metadata['revisions'].count
+
+    # OK, let's make sure the live revision is from our last update
+    assert_equal 'Baz bar foo', record_1.metadata_live['title']
+
   end
 
   it "should download transformed JSON files for a given batch" do

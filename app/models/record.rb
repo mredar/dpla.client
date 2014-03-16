@@ -3,12 +3,11 @@ require 'digest/sha1'
 
 class Record < ActiveRecord::Base
   include ImportLog
-  before_save :live_revision_set, :on => [:create, :update]
-  before_save :record_hash_set, :on => [:create, :update]
+  self.primary_key = "record_hash"
   belongs_to :transformation_batch
   has_many :record_revisions
   has_one :import_batch, through: :transformation_batch
-
+  has_many :metadata_records, autosave: true
   around_update :log_update
   after_create :log_create
 
@@ -16,7 +15,47 @@ class Record < ActiveRecord::Base
     message: "No two records should share the same record_hash."
   }
 
-  # Log changes to individual records
+  # A method to fetch the live revision of the metadata
+  def metadata_live
+    if hash_lock = self.lock_at_metadata_hash
+      return has_revision?(self.metadata['revisions'], hash_lock)
+    else
+      # Get the last version, discard the hash key, return the value
+      return self.metadata['revisions'].pop.values.pop
+    end
+  end
+
+  # Custom metadata setter to allow for revision retrieval by metadata hash key
+  # This value will be appended to any previously saved values
+  def metadata=(value)
+    if (defined?(self[:metadata]['revisions']))
+      self[:metadata]['revisions'] << {metadata_hash(value) => value}
+      self[:metadata]['revisions'].uniq!
+      # In-place edits to
+      self.metadata_will_change!
+    else
+      self[:metadata] = {'revisions' => [{metadata_hash(value) => value}]}
+    end
+  end
+
+  def record_hash
+    if self.attribute_present?(:provider) && self.attribute_present?(:identifier)
+      return self[:record_hash] = hashify("#{self.provider}#{self.identifier}")
+    else
+      raise "Both the Provider and Identifier MUST BE SET in order to access the record_hash."
+    end
+  end
+
+  def record_hash=
+    raise "Record hash cannot be directly set"
+  end
+
+  def has_revision?(revisions, revision_hash)
+    revisions ||= []
+    revisions.reduce(nil) {|memo, revision| revision[revision_hash] ? revision[revision_hash] : memo}
+  end
+
+ # Log changes to individual records
   def log_update
     metadata_changed = self.changed?
     if metadata_changed
@@ -26,47 +65,16 @@ class Record < ActiveRecord::Base
   end
 
   def log_create
-      import_log.info("Record Created for #{self.provider} and Identifier: #{self.identifier}.")
+    import_log.info("Record Created for #{self.provider} and Identifier: #{self.identifier}.")
   end
 
-  def revisions(identifier, provider)
-    Record.where(identifier: @record.identifier, provider: @record.provider)
+  # Generate a hash of the transformed metadata
+  def metadata_hash(metadata)
+    hashify(metadata.except('originalRecord').to_json)
   end
 
-  def live_revision_set
-    # This version has not been designated as being locked as the live revision
-    # (e.g. manual edits by app users will trigger this lock so that automated)
-    # imports don't automatically override this lock
-    if self.lock_as_live_revision == false
-      # If this record was previousl locked as the live revision
-      # ensure that we don't override that lock with this update.
-      if self.changed_attributes['lock_as_live_revision'] == true
-        self.is_live_revision = false
-      else
-        self.is_live_revision = true
-      end
-    else
-      # If no lock on the live revision exists, set this as the new live
-      # revision
-      self.is_live_revision = true
-    end
-  end
-
-  def self.hashify(string)
+  def hashify(string)
     Digest::SHA1.hexdigest string
-  end
-
-  def self.get_record_hash(metadata, identifier, provider)
-    begin
-      # Only track changes to the transformed doc, not changes in the original record
-      self.hashify([metadata.except('originalRecord').to_json, identifier, provider].inject {|field, n| field + n})
-      rescue => e
-        raise "Could not hashify data for Identifier: `#{identifier}`, Provider: `#{provider}`, Metadata: `#{metadata_string}` Error: #{e}"
-      end
-  end
-
-  def record_hash_set
-    self.record_hash = Record.get_record_hash(self.metadata, self.identifier, self.provider)
   end
 
   # Compare local record with its counterpart in DPLA

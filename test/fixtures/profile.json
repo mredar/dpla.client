@@ -3,11 +3,11 @@
         "records": {
             "base_url": "http://localhost:8083/api/v1/extract",
             "endpoint_type": "oai_dc",
-            "query_params": "%26verb%3DListRecords",
-            "api_key": "aff3aeac5688976f3762622920de4d80",
+            "query_params": "verb%3DListRecords%26metadataPrefix%3Doai_dc",
+            "api_key": "dad524e0bd2393223f14f5da8c7fb6f5",
             "origin_path": "records",
             "endpoint": "http://localhost:3002/oai/show",
-            "cache_response": false,
+            "allow_parallel_extraction": false,
             "batch_params": [
                 "resumptionToken%3D%3A%3A%3Aoai_dc%3A1000"
             ]
@@ -25,8 +25,7 @@
                     "endpoint": "http://localhost:3002/oai/show",
                     "endpoint_type": "oai_dc",
                     "query_params": "%26verb%3DListSets",
-                    "api_key": "aff3aeac5688976f3762622920de4d80",
-                    "cache_response": false
+                    "api_key": "dad524e0bd2393223f14f5da8c7fb6f5"
                 }
             }
         ]
@@ -34,7 +33,7 @@
     "transformer": {
         "max_batch_size": 3,
         "base_url": "http://localhost:8083/api/v1/transform",
-        "api_key": "aff3aeac5688976f3762622920de4d80",
+        "api_key": "dad524e0bd2393223f14f5da8c7fb6f5",
         "@context": {
             "edm": "http://www.europeana.eu/schemas/edm/",
             "isShownAt": "edm:isShownAt",
@@ -65,15 +64,21 @@
         "fields": {
             "testMultiOrigin": {
                 "origins": [
-                    {"path": "metadata/dc/type"},
-                    {"prefix": "[where]", "path": "metadata/dc/coverage", "suffix": "[/where]"}
+                    {
+                        "path": "metadata/dc/type"
+                    },
+                    {
+                        "prefix": "[where]",
+                        "path": "metadata/dc/coverage",
+                        "suffix": "[/where]"
+                    }
                 ],
                 "processors": [
                     {
                         "process": "rstrip"
                     },
                     {
-                     "process": "gsub",
+                        "process": "gsub",
                         "args": {
                             "pattern": ";",
                             "replacement": ""
@@ -82,10 +87,18 @@
                 ]
             },
             "isShownAt": {
-                "origins": [{"path": "metadata/dc/identifier[2]"}]
+                "origins": [
+                    {
+                        "path": "metadata/dc/identifier[2]"
+                    }
+                ]
             },
             "object": {
-                "origins": [{"path": "metadata/dc/identifier[2]"}],
+                "origins": [
+                    {
+                        "path": "metadata/dc/identifier[2]"
+                    }
+                ],
                 "processors": [
                     {
                         "process": "gsub",
@@ -110,7 +123,11 @@
                 ]
             },
             "dataProvider": {
-                "origins": [{"path": "metadata/dc/publisher"}]
+                "origins": [
+                    {
+                        "path": "metadata/dc/publisher"
+                    }
+                ]
             },
             "provider": {
                 "value": {
@@ -119,7 +136,11 @@
                 }
             },
             "title": {
-                "origins": [{"path": "metadata/dc/title"}],
+                "origins": [
+                    {
+                        "path": "metadata/dc/title"
+                    }
+                ],
                 "processors": [
                     {
                         "process": "rstrip"
@@ -127,7 +148,11 @@
                 ]
             },
             "sourceResource/title": {
-                "origins": [{"path": "metadata/dc/title"}],
+                "origins": [
+                    {
+                        "path": "metadata/dc/title"
+                    }
+                ],
                 "processors": [
                     {
                         "process": "rstrip"
@@ -193,14 +218,16 @@
             "sourceResource/subject": {
                 "label": "name",
                 "origins": [
-                {
-                "path": "metadata/dc/subject"
-                }
+                    {
+                        "path": "metadata/dc/subject"
+                    }
                 ],
                 "processors": [
                     {
                         "process": "rsplit",
-                        "args": ["; "]
+                        "args": [
+                            "; "
+                        ]
                     },
                     {
                         "process": "flatten"
@@ -209,35 +236,51 @@
                         "process": "unique"
                     },
                     {
-                     "process": "rstrip"
+                        "process": "rstrip"
                     }
                 ]
             },
             "sourceResource/date/begin": {
                 "origins": [
                     {
-                    "path": "metadata/dc/date"
+                        "path": "metadata/dc/date"
                     }
                 ],
                 "processors": [
                     {
                         "process": "rsplit",
-                        "args": [" - "]
+                        "args": [
+                            " - "
+                        ]
                     },
                     {
                         "process": "slice",
-                        "args": ["0"]
+                        "args": [
+                            "0"
+                        ]
                     }
                 ]
             },
             "sourceResource/description": {
-                "origins": [{"path": "metadata/dc/description"}]
+                "origins": [
+                    {
+                        "path": "metadata/dc/description"
+                    }
+                ]
             },
             "sourceResource/contributor": {
-                "origins": [{"path": "metadata/dc/contributor"}]
+                "origins": [
+                    {
+                        "path": "metadata/dc/contributor"
+                    }
+                ]
             },
             "sourceResource/format": {
-                "origins": [{"path": "metadata/dc/format"}],
+                "origins": [
+                    {
+                        "path": "metadata/dc/format"
+                    }
+                ],
                 "processors": [
                     {
                         "process": "rstrip"
@@ -245,10 +288,18 @@
                 ]
             },
             "sourceResource/rights": {
-                "origins": [{"path": "metadata/dc/rights"}]
+                "origins": [
+                    {
+                        "path": "metadata/dc/rights"
+                    }
+                ]
             },
             "sourceResource/relation": {
-                "origins": [{"path": "metadata/dc/relation"}],
+                "origins": [
+                    {
+                        "path": "metadata/dc/relation"
+                    }
+                ],
                 "processors": [
                     {
                         "process": "rsplit",
@@ -262,16 +313,32 @@
                 ]
             },
             "sourceResource/collection/title": {
-                "origins": [{"path": "setSpec/setDescription/oclcdc/title"}]
+                "origins": [
+                    {
+                        "path": "setSpec/setDescription/oclcdc/title"
+                    }
+                ]
             },
             "sourceResource/collection/description": {
-                "origins": [{"path": "setSpec/setDescription/oclcdc/description"}]
+                "origins": [
+                    {
+                        "path": "setSpec/setDescription/oclcdc/description"
+                    }
+                ]
             },
             "sourceResource/type": {
-                "origins": [{"path": "metadata/dc/type"}]
+                "origins": [
+                    {
+                        "path": "metadata/dc/type"
+                    }
+                ]
             },
             "identifier": {
-                "origins": [{"path": "header/identifier"}]
+                "origins": [
+                    {
+                        "path": "header/identifier"
+                    }
+                ]
             }
         }
     }

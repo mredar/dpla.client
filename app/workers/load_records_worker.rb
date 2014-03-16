@@ -46,11 +46,11 @@ class LoadRecordsWorker
   # to the upsert gem (https://github.com/seamusabshere/upsert) or use a similar
   # approach
   def update_records(upserts)
-    updatables = Record.select('id, record_hash, identifier').where('record_hash IN (?)', upserts.keys)
+    updatables = Record.select('id, record_hash, identifier, provider').where('record_hash IN (?)', upserts.keys)
     updates = {}
     updatables.each do |up|
-      updates[up.id] = upserts[up.record_hash]
-      upserts.delete(up['record_hash'])
+      updates[up.record_hash] = upserts[up.record_hash]
+      upserts.delete(up.record_hash)
     end
     if (!updates.empty?)
       begin
@@ -69,14 +69,14 @@ class LoadRecordsWorker
   def prepare_upserts(records, t_batch_id)
     upserts = {}
     records.each do |r|
-      record_hash = Record.get_record_hash(r, r['identifier'], r['provider']['@id'])
-      contributor = (r['contributor'].present?) ? r['contributor'] : nil
+      # Create a new record to get a record hash
+      record = Record.new(:provider => r['provider']['@id'], :identifier => r['identifier'])
       begin
-        upserts[record_hash] = {
+        upserts[record.record_hash] = {
+          :title => r['title'],
           :identifier => r['identifier'],
           :provider => r['provider']['@id'],
-          :metadata => r.to_json,
-          :lock_as_live_revision => 'f',
+          :metadata => r,
           :is_published => 'f',
           :transformation_batch_id => t_batch_id
         }

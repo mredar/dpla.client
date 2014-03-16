@@ -16,13 +16,6 @@ ActiveRecord::Schema.define(version: 20140204191101) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "api_keys", force: true do |t|
-    t.string   "access_token"
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "import_batches", force: true do |t|
     t.string   "batch_param"
     t.boolean  "is_active"
@@ -56,13 +49,14 @@ ActiveRecord::Schema.define(version: 20140204191101) do
     t.string   "provider"
     t.boolean  "is_published"
     t.boolean  "is_live_revision"
-    t.boolean  "lock_as_live_revision"
+    t.string   "lock_at_metadata_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "transformation_batch_id"
   end
 
   add_index "records", ["identifier"], name: "index_records_on_identifier", using: :btree
+  add_index "records", ["provider", "identifier"], name: "index_records_on_provider_and_identifier", unique: true, using: :btree
   add_index "records", ["provider"], name: "index_records_on_provider", using: :btree
   add_index "records", ["record_hash"], name: "index_records_on_record_hash", unique: true, using: :btree
   add_index "records", ["title"], name: "index_records_on_title", using: :btree
@@ -96,5 +90,18 @@ ActiveRecord::Schema.define(version: 20140204191101) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "versions", force: true do |t|
+    t.string   "item_type",               null: false
+    t.integer  "item_id",                 null: false
+    t.string   "event",                   null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+    t.boolean  "manual_edit"
+    t.integer  "transformation_batch_id"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
 end
