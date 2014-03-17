@@ -78,6 +78,8 @@ class Record < ActiveRecord::Base
   end
 
   # Compare local record with its counterpart in DPLA
+  # Yes, I know this is fugly
+  # TODO: Refactor
   def diff_with_dpla
     enrichments = self.import_batch.import_job.enrichments
     original_record = self.metadata_live['originalRecord']
@@ -91,6 +93,7 @@ class Record < ActiveRecord::Base
       compare = JSON.parse(pipe.compare_with_dpla(transformed, CGI::escape("isShownAt=#{transformed['isShownAt']}")))
       records = (defined?(compare['diff']['records'])) ? compare['diff']['records'] : []
       fields = (defined?(compare['diff']['fields'])) ? compare['diff']['fields'] : []
+      dpla_url = compare['dpla_url']
       field_diffs = {}
       fields.each do |key, vals|
         if Diffy::Diff.new(vals[0], vals[1]).to_s(:text) != ""
@@ -98,10 +101,11 @@ class Record < ActiveRecord::Base
         end
       end
     else
-      compare['diff'] = {'records' => [transformed]}
+      records = [transformed]
       field_diffs = []
+      dpla_url = ''
     end
-    {'field_diffs' => field_diffs, 'records' => prettify(records), 'dpla_url' => compare['dpla_url']}
+    {'field_diffs' => field_diffs, 'records' => prettify(records), 'dpla_url' => dpla_url}
   end
 
   protected
