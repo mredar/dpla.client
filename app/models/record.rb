@@ -98,7 +98,7 @@ class Record < ActiveRecord::Base
         end
       end
     else
-      compare = {'records' => [transformed]}
+      compare['diff'] = {'records' => [transformed]}
       field_diffs = []
     end
     {'field_diffs' => field_diffs, 'records' => prettify(records), 'dpla_url' => compare['dpla_url']}
