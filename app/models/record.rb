@@ -108,6 +108,7 @@ class Record < ActiveRecord::Base
 
     # Generate nice looking JSON for Enumerables
     def prettify(items)
+      items ||= []
       prettied = []
       items.each do |item|
         if item.is_a?(Enumerable)
