@@ -80,7 +80,7 @@ class Record < ActiveRecord::Base
   # Compare local record with its counterpart in DPLA
   def diff_with_dpla
     enrichments = self.import_batch.import_job.enrichments
-    original_record = self.metadata['originalRecord']
+    original_record = self.metadata_live['originalRecord']
     profile = self.import_batch.import_job.profile.to_json
     pipe = Pipeline.new(profile)
     if !original_record

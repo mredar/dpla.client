@@ -20,7 +20,7 @@
             <%= record.identifier %>
             <%=  link_to  'Diff with DPLA', :action => :check_teachers, :id => @school.id
             <%= link_to 'Diff with DPLA', diff_with_dpla(@import_job), :class => 'btn btn-mini btn-info' %></td>
-            <pre><code><%= JSON.pretty_generate(record.metadata) %></pre></code>
+            <pre><code><%= JSON.pretty_generate(record.metadata_live) %></pre></code>
           </div>
           <div class="col-md-6">
           </div>

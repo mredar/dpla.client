@@ -13,7 +13,7 @@
            [ID: <%= record.id %>]
             <%= record.identifier %>
             <%= link_to 'View Record', record, :class => 'btn btn-mini btn-info' %></td>
-            <pre><code><%= JSON.pretty_generate(record.metadata) %></pre></code>
+            <pre><code><%= JSON.pretty_generate(record.metadata_live) %></pre></code>
           </div>
         </li>
       </div>

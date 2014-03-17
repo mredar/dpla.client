@@ -102,7 +102,7 @@ class ImportJobsController < ApplicationController
       records = []
       import_batch.transformation_batches.each do |t_batch|
         t_batch.records.each do |record|
-          records << record.metadata
+          records << record.metadata_live
         end
       end
       share_records(File.join(Rails.root, "shared", "#{job.name}", "batch-#{import_batch.id}-records.json"), records)
