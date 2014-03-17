@@ -71,9 +71,10 @@ class LoadRecordsWorker
     records.each do |r|
       # Create a new record to get a record hash
       record = Record.new(:provider => r['provider']['@id'], :identifier => r['identifier'])
+      title = (r['title'].is_a?(Array)) ? r['title'].join(' ') : r['title']
       begin
         upserts[record.record_hash] = {
-          :title => r['title'],
+          :title => title,
           :identifier => r['identifier'],
           :provider => r['provider']['@id'],
           :metadata => r,
