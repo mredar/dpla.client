@@ -2,6 +2,9 @@
   <div class="transform-preview">
     <h1>Transformation Path Diff</h1>
       <div class="col-md-12">
+          <div class="row pull-right">
+            <%=  link_to raw("DPLA API LINK &raquo;"), @dpla_url, {remote: true, html: true} %>
+          </div>
           <div class="row">
             <div class="col-md-2">
               <h2>Field Path</h2>
@@ -13,7 +16,6 @@
               <h2>DPLA Value</h2>
             </div>
           </div>
-
           <% @field_diffs.each do |path, vals| %>
 
             <div class="row">

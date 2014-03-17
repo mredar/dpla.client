@@ -88,9 +88,9 @@ class Record < ActiveRecord::Base
     end
     transformed = JSON.parse(pipe.transform({'records' => [original_record]}, enrichments))['records'][0]
     if (transformed['isShownAt'])
-      compare  = JSON.parse(pipe.compare_with_dpla(transformed, CGI::escape("isShownAt=#{transformed['isShownAt']}")))
+      compare = JSON.parse(pipe.compare_with_dpla(transformed, CGI::escape("isShownAt=#{transformed['isShownAt']}")))
       field_diffs = {}
-      compare['fields'].each do |key, vals|
+      compare['diff']['fields'].each do |key, vals|
         if Diffy::Diff.new(vals[0], vals[1]).to_s(:text) != ""
           field_diffs[key] = self.prettify(vals)
         end
@@ -99,7 +99,7 @@ class Record < ActiveRecord::Base
       compare = {'records' => [transformed]}
       field_diffs = []
     end
-    {'field_diffs' => field_diffs, 'records' => prettify(compare['records'])}
+    {'field_diffs' => field_diffs, 'records' => prettify(compare['diff']['records']), 'dpla_url' => compare['dpla_url']}
   end
 
   protected

@@ -11,6 +11,7 @@ class RecordsController < ApplicationController
       @field_diffs = preview['field_diffs']
       @ours = preview['records'][0]
       @theirs = preview['records'][1]
+      @dpla_url = preview['dpla_url']
       # Placeholder - need to implement revision history feature
       @revision_history = []
     else
