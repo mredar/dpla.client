@@ -7,7 +7,6 @@ class Record < ActiveRecord::Base
   belongs_to :transformation_batch
   has_many :record_revisions
   has_one :import_batch, through: :transformation_batch
-  has_many :metadata_records, autosave: true
   around_update :log_update
   after_create :log_create
 
