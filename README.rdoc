@@ -5,6 +5,7 @@ This application provides the basic extraction and transformation components for
 Requires postgresql >= 9.2 for json type.
 Need to setup peer user for local use?
 
+bundle install
 bundle exec sidekiq
 
 TODO:
