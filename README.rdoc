@@ -17,5 +17,7 @@ Document profile fields.
 Make import job form not accept blank profile
 Validate profile before submitting jobs?
 
+fix "Delete bach... message
+
 
 
