@@ -1,3 +1,5 @@
 == README
 
 This application provides the basic extraction and transformation components for the dpla regional hub stack.
+
+Requires postgresql >= 9.2 for json type.
